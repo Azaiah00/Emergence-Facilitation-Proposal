@@ -104,22 +104,23 @@ export function Hero() {
             </div>
           </motion.div>
         </div>
-      </div>
 
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 2, duration: 1 }}
-        className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-slate-warm"
-      >
-        <span className="text-xs uppercase tracking-widest">Scroll to begin</span>
+        {/* Placed in document flow below cards so it never overlaps */}
         <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 2, duration: 1 }}
+          className="mt-16 md:mt-20 pb-12 flex flex-col items-center gap-2 text-slate-warm"
         >
-          <ChevronDown className="w-4 h-4 text-gold" />
+          <span className="text-xs uppercase tracking-widest">Scroll to begin</span>
+          <motion.div
+            animate={{ y: [0, 8, 0] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <ChevronDown className="w-4 h-4 text-gold" />
+          </motion.div>
         </motion.div>
-      </motion.div>
+      </div>
     </section>
   );
 }
