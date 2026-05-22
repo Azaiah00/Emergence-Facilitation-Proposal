@@ -1,0 +1,41 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #0A0E1A;
+  --color-charcoal: #1A1F2E;
+  --color-bone: #F5F1E8;
+  --color-cream: #FAF7F0;
+  --color-gold: #D4AF37;
+  --color-gold-light: #E8C76A;
+  --color-gold-dark: #9E7B1A;
+  --color-slate-warm: #3A3F4B;
+  --color-slate-muted: #6B7080;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-fraunces), ui-serif, Georgia, serif;
+}
+
+@layer base {
+  body {
+    @apply bg-ink text-slate-warm font-sans;
+  }
+}
+
+@media print {
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  
+  body {
+    @apply bg-white text-black;
+  }
+
+  /* Flatten all animations for print */
+  * {
+    transition: none !important;
+    animation: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}
