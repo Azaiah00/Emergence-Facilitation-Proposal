@@ -1,27 +1,18 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { SectionWrapper } from "../ui/SectionWrapper";
 
 export function StatementOfWork() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start center", "end center"]
-  });
-
-  const scaleY = useTransform(scrollYProgress, [0, 1], [0, 1]);
-
   const phases = [
     {
       title: "Phase 1: Discovery & Preparation (July)",
       bullets: [
         "Individual pre-work assignments for each participating leader",
         "Pre-work coordination and collection from all participants",
-        "Agenda design customized to GEA's strategic themes and group dynamics",
+        "Agenda design customized to GEA’s strategic themes and group dynamics",
         "Facilitation materials, decision frameworks, and session tools",
-        "Logistics coordination with John's team and executive assistants"
+        "Logistics coordination with John’s team and executive assistants"
       ]
     },
     {
@@ -47,7 +38,7 @@ export function StatementOfWork() {
 
   const columns = [
     {
-      label: "PRE-ONSITE",
+      label: "Pre-Onsite",
       bullets: [
         "Customized agenda with session objectives and success metrics",
         "Pre-work templates and guidance for all participants",
@@ -55,7 +46,7 @@ export function StatementOfWork() {
       ]
     },
     {
-      label: "DURING ONSITE",
+      label: "During Onsite",
       bullets: [
         "Live facilitation of all sessions with real-time capture",
         "Visual documentation of key decisions and frameworks",
@@ -63,7 +54,7 @@ export function StatementOfWork() {
       ]
     },
     {
-      label: "POST-ONSITE",
+      label: "Post-Onsite",
       bullets: [
         "Executive Summary Report",
         "Detailed Action Plan with owners, timelines, and success metrics",
@@ -76,92 +67,41 @@ export function StatementOfWork() {
 
   return (
     <SectionWrapper id="sow" eyebrow="STATEMENT OF WORK" className="bg-bone text-ink">
-      <div className="text-center mb-20">
+      <div className="text-center mb-16">
         <motion.h2 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="font-serif text-4xl md:text-5xl lg:text-6xl mb-6"
+          className="font-sans font-bold text-2xl md:text-3xl mb-2 text-ink"
         >
-          From Clarity to Commitment: GEA&apos;s August Leadership Strategy Series
+          From Clarity to Commitment: GEA’s August Leadership Strategy Series
         </motion.h2>
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-          className="text-slate-warm text-lg md:text-xl"
+          className="text-slate-warm text-lg"
         >
-          Project Timeline: July 28, 2026 – August 26, 2026 (per chosen option)
+          Project Timeline: July 28, 2026 –August 26, 2026 (per chosen option)
         </motion.p>
       </div>
 
-      <div ref={containerRef} className="relative max-w-4xl mx-auto mb-24 pl-4 md:pl-0">
-        {/* Vertical Line */}
-        <div className="absolute left-[15px] md:left-1/2 top-0 bottom-0 w-px bg-gold/20 -translate-x-1/2" />
-        <motion.div 
-          className="absolute left-[15px] md:left-1/2 top-0 bottom-0 w-px bg-gold -translate-x-1/2 origin-top"
-          style={{ scaleY }}
-        />
-
-        <div className="space-y-16">
-          {phases.map((phase, idx) => (
-            <div key={idx} className="relative flex flex-col md:flex-row md:even:flex-row-reverse items-start md:items-center gap-8">
-              {/* Circle */}
-              <div className="absolute left-[15px] md:left-1/2 w-8 h-8 rounded-full bg-bone border-2 border-gold -translate-x-1/2 flex items-center justify-center z-10">
-                <span className="text-gold font-serif text-sm">{idx + 1}</span>
-              </div>
-
-              {/* Content Card */}
-              <motion.div 
-                initial={{ opacity: 0, x: idx % 2 === 0 ? 50 : -50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-                className={`w-full md:w-[calc(50%-3rem)] pl-12 md:pl-0 ${idx % 2 === 0 ? 'md:pr-12 md:text-right' : 'md:pl-12'}`}
-              >
-                <div className="bg-white p-6 md:p-8 shadow-sm border border-gold/10 rounded-sm">
-                  <h3 className="font-serif text-xl mb-4 text-ink">{phase.title}</h3>
-                  <ul className={`space-y-3 text-slate-warm ${idx % 2 === 0 ? 'md:list-none' : 'list-none'}`}>
-                    {phase.bullets.map((bullet, bIdx) => (
-                      <motion.li 
-                        key={bIdx}
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.5, delay: 0.4 + (bIdx * 0.1) }}
-                        className="relative pl-4"
-                      >
-                        <span className={`absolute left-0 top-2 w-1.5 h-1.5 rounded-full bg-gold/50 ${idx % 2 === 0 ? 'md:hidden' : ''}`} />
-                        {/* Custom bullet for right-aligned desktop */}
-                        {idx % 2 === 0 && <span className="hidden md:block absolute right-0 top-2 w-1.5 h-1.5 rounded-full bg-gold/50" />}
-                        <span className={idx % 2 === 0 ? 'md:pr-4' : ''}>{bullet}</span>
-                      </motion.li>
-                    ))}
-                  </ul>
-                </div>
-              </motion.div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
-        {columns.map((col, idx) => (
-          <motion.div
+      <div className="max-w-4xl mx-auto mb-20 space-y-12">
+        {phases.map((phase, idx) => (
+          <motion.div 
             key={idx}
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, delay: idx * 0.15, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.8, delay: idx * 0.1, ease: [0.22, 1, 0.36, 1] }}
           >
-            <div className="h-px w-full bg-gold mb-6" />
-            <h4 className="text-gold-dark uppercase tracking-widest text-sm font-medium mb-6">{col.label}</h4>
-            <ul className="space-y-4 text-slate-warm">
-              {col.bullets.map((bullet, bIdx) => (
+            <h3 className="font-bold text-lg mb-4 text-ink">{phase.title}</h3>
+            <ul className="space-y-2 text-slate-warm">
+              {phase.bullets.map((bullet, bIdx) => (
                 <li key={bIdx} className="flex items-start gap-3">
-                  <span className="w-1.5 h-1.5 rounded-full bg-gold/30 mt-2 shrink-0" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-gold mt-2 shrink-0" />
                   <span className="leading-relaxed">{bullet}</span>
                 </li>
               ))}
@@ -169,6 +109,31 @@ export function StatementOfWork() {
           </motion.div>
         ))}
       </div>
+
+      {/* Deliverables Table */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+        className="max-w-5xl mx-auto bg-white border border-bone rounded-lg shadow-sm overflow-hidden"
+      >
+        <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-bone">
+          {columns.map((col, idx) => (
+            <div key={idx} className="p-8">
+              <h4 className="text-center font-bold text-lg mb-6 text-ink">{col.label}</h4>
+              <ul className="space-y-4 text-slate-warm">
+                {col.bullets.map((bullet, bIdx) => (
+                  <li key={bIdx} className="flex items-start gap-3">
+                    <span className="w-1.5 h-1.5 rounded-full bg-gold mt-2 shrink-0" />
+                    <span className="leading-relaxed text-sm">{bullet}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </motion.div>
     </SectionWrapper>
   );
 }

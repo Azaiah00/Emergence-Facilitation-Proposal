@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { Check } from "lucide-react";
 import { SectionWrapper } from "../ui/SectionWrapper";
 
 export function Facilitator() {
@@ -22,7 +21,7 @@ export function Facilitator() {
   ];
 
   const bioParagraphs = [
-    "Kelly Plunkett is an ICF certified Executive Leadership Coach, Facilitator and Fortune 20 leader with over 25 years' experience guiding sizable, cross-functional teams in designing, redesigning and launching cutting-edge business solutions, driving greater efficiency, engagement, and revenues.",
+    "Kelly Plunkett is an ICF certified Executive Leadership Coach, Facilitator and Fortune 20 leader with over 25 years’ experience guiding sizable, cross-functional teams in designing, redesigning and launching cutting-edge business solutions, driving greater efficiency, engagement, and revenues.",
     "As a masterful facilitator, Kelly creates psychologically safe environments where diverse perspectives flourish and collaborative innovation thrives. Her structured yet adaptable facilitation approach guides teams through complex challenges, transforming potential conflicts into productive dialogue and actionable outcomes. Whether facilitating strategic planning sessions, team alignment workshops, or high-stakes decision-making meetings, Kelly expertly balances process discipline with creative exploration.",
     "By skillfully navigating the intersection of business objectives and personal leadership behavior, Kelly helps executives discover breakthrough solutions that elevate both individual performance and organizational impact. Clients consistently report stronger stakeholder relationships, more inclusive team dynamics, and a renewed sense of shared purpose and vision that drives sustainable success."
   ];
@@ -38,17 +37,27 @@ export function Facilitator() {
   ];
 
   return (
-    <SectionWrapper id="facilitator" eyebrow="YOUR FACILITATOR" className="bg-ink text-bone">
-      <div className="flex flex-col md:flex-row gap-12 lg:gap-24 relative items-start">
+    <SectionWrapper id="facilitator" eyebrow="YOUR FACILITATOR" className="bg-white text-ink">
+      <motion.h2 
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+        className="font-sans text-4xl md:text-5xl mb-16 text-ink"
+      >
+        Kelly M. Plunkett, MBA, PCC
+      </motion.h2>
+
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
         
-        {/* Sticky Left Column */}
-        <div className="w-full md:w-1/3 md:sticky md:top-32 shrink-0">
+        {/* Left Column (Image & Pillars) */}
+        <div className="lg:col-span-4 space-y-12">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-            className="aspect-square relative rounded-full overflow-hidden shadow-[0_0_30px_rgba(212,175,55,0.15)]"
+            className="w-48 h-48 md:w-64 md:h-64 relative rounded-full overflow-hidden shadow-[0_0_40px_rgba(212,175,55,0.2)] border-4 border-gold/20 mx-auto lg:mx-0"
           >
             <Image
               src="/kelly-headshot-circle.png"
@@ -58,16 +67,8 @@ export function Facilitator() {
               sizes="(max-width: 768px) 100vw, 33vw"
             />
           </motion.div>
-          <div className="mt-8">
-            <h2 className="font-serif text-4xl text-white mb-2">Kelly M. Plunkett, <span className="text-2xl text-gold">MBA, PCC</span></h2>
-          </div>
-        </div>
 
-        {/* Scrolling Right Column */}
-        <div className="w-full md:w-2/3 space-y-20">
-          
-          {/* Pillars */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="bg-gold-light/10 border border-gold/20 rounded-2xl p-8 space-y-8">
             {pillars.map((pillar, idx) => (
               <motion.div
                 key={idx}
@@ -75,16 +76,17 @@ export function Facilitator() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.8, delay: idx * 0.15, ease: [0.22, 1, 0.36, 1] }}
-                className="bg-charcoal/30 border border-white/5 p-6 rounded-sm"
               >
-                <h4 className="text-gold-light text-sm font-medium mb-4">{pillar.title}</h4>
-                <p className="text-slate-400 text-sm leading-relaxed">{pillar.body}</p>
+                <h4 className="font-bold text-ink mb-2 text-center lg:text-left">{pillar.title}</h4>
+                <p className="text-slate-warm text-sm leading-relaxed text-center lg:text-left">{pillar.body}</p>
               </motion.div>
             ))}
           </div>
+        </div>
 
-          {/* Long Bio */}
-          <div className="space-y-6 text-slate-300 text-lg leading-relaxed">
+        {/* Right Column (Bio & Credentials) */}
+        <div className="lg:col-span-8 space-y-12">
+          <div className="space-y-6 text-slate-warm text-lg leading-relaxed">
             {bioParagraphs.map((para, idx) => (
               <motion.p
                 key={idx}
@@ -98,35 +100,31 @@ export function Facilitator() {
             ))}
           </div>
 
-          {/* Credentials */}
           <div>
             <motion.h3 
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              className="font-serif text-3xl mb-10 text-white"
+              className="font-bold text-xl mb-6 text-ink"
             >
               Relevant Qualifications and Credentials
             </motion.h3>
-            <div className="space-y-4">
+            <ul className="space-y-4">
               {credentials.map((cred, idx) => (
-                <motion.div
+                <motion.li
                   key={idx}
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ duration: 0.6, delay: idx * 0.1, ease: [0.22, 1, 0.36, 1] }}
-                  className="flex items-start gap-4"
+                  className="flex items-start gap-4 text-slate-warm text-lg"
                 >
-                  <div className="mt-1 bg-gold/10 p-1 rounded-full text-gold shrink-0">
-                    <Check className="w-3 h-3" strokeWidth={3} />
-                  </div>
-                  <p className="text-slate-400 leading-relaxed">{cred}</p>
-                </motion.div>
+                  <span className="w-1.5 h-1.5 rounded-full bg-gold mt-2.5 shrink-0" />
+                  <span className="leading-relaxed">{cred}</span>
+                </motion.li>
               ))}
-            </div>
+            </ul>
           </div>
-
         </div>
       </div>
     </SectionWrapper>
