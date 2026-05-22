@@ -19,6 +19,31 @@
   body {
     @apply bg-ink text-slate-warm font-sans;
   }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: var(--color-ink);
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-charcoal);
+    border: 1px solid var(--color-gold);
+    border-radius: 5px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-gold-dark);
+  }
+  
+  /* Firefox scrollbar */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-gold) var(--color-ink);
+  }
 }
 
 @media print {
